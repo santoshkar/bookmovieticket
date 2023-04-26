@@ -12,15 +12,22 @@
 </mat-toolbar>
 <div fxLayout="row" fxLayoutAlign="center">
   <mat-card class="box">
-    <mat-card-header>
-      <mat-card-title class="signin-label">Sign in</mat-card-title>
+    <mat-card-header *ngIf="!isUserFound">
+      <mat-card-title class="small-text error-message"
+        >Invalid username or password</mat-card-title
+      >
     </mat-card-header>
     <mat-card-content>
       <mat-form-field>
-        <input matInput placeholder="Username" />
+        <input [(ngModel)]="username" matInput placeholder="Username" />
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Password" />
+        <input
+          [(ngModel)]="password"
+          type="password"
+          matInput
+          placeholder="Password"
+        />
       </mat-form-field>
     </mat-card-content>
     <button class="button-18" style="margin-left: 1em" (click)="login()">

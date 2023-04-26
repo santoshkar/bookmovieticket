@@ -31,4 +31,10 @@
   &.bold{
     font-weight: bold;
   }
+  &.error-message {
+    color: red;
+    font-size: medium;
+    padding-right: 1em;
+    font-weight: normal;
+  }
 }

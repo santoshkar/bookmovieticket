@@ -15,6 +15,8 @@ import { LogInComponent } from './log-in/log-in.component';
 import { RegisterComponent } from './register/register.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { CustomerHomeComponent } from './customer-home/customer-home.component';
+import { HighlightDirective } from './highlight.directive';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     LogInComponent,
     RegisterComponent,
     LandingPageComponent,
+    CustomerHomeComponent,
+    HighlightDirective
     
   ],
   imports: [
