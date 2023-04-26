@@ -11,6 +11,11 @@ select {
     border-radius: 3px;
 }
 
+.row-label{
+    color:rgb(40, 5, 128);
+    font-weight: 800;
+}
+
 
 .triangle{
     width: 0; 
@@ -37,14 +42,14 @@ select {
 
 .theater {
     &.seats{
-        margin-top: 8em;
+        margin-top: 14em;
         border-style: ridge;
         margin-left: 20%;
        
     }
     &.screen{
         text-align: center;
-        margin-top: 4em;
+        margin-top: 9em;
         margin-left: 27%;
         font-size: large;
         

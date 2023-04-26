@@ -12,18 +12,16 @@
   </span>
 </mat-toolbar>
 
-<br /><br /><br /><br />
-
 <div class="theater screen">SCREEN THIS SIDE</div>
 
 <div class="theater seats">
   <div class="seat-row" *ngFor="let row of theaterSeats" style="display: flex">
-    {{ row.rowIndex }}
+    <span class="row-label">{{ row.index }}</span>
     <div
       *ngFor="let column of row.columns"
       [appHighlight]="'green'"
       class="seat-booking-style"
-      (click)="selectUnselect($event)"
+      (click)="selectUnselect(row.index, column.index)"
     >
       {{ column.index }}
     </div>

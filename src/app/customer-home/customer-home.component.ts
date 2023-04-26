@@ -12,6 +12,7 @@ import { CustomerService } from "../customer.service";
 export class CustomerHomeComponent implements OnInit {
   cityList: City[];
   selectedCity: any;
+  labelMap = new Map();
 
   
   theaterSeats = new Array();
@@ -24,7 +25,16 @@ export class CustomerHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.initCityDropdown();
+    this.initLabels();
     this.showSeats();
+  }
+
+  initLabels(){
+    this.labelMap.set(0, 'A');
+    this.labelMap.set(1, 'B');
+    this.labelMap.set(2, 'C');
+    this.labelMap.set(3, 'D');
+    this.labelMap.set(4, 'E');
   }
 
   initCityDropdown(){
@@ -60,17 +70,16 @@ export class CustomerHomeComponent implements OnInit {
           });
       }
       seatRow = {
-        index: row,
+        index: this.labelMap.get(row),
         columns: columns
       }
       this.theaterSeats.push(seatRow);
     }
-    console.log(this.theaterSeats);
-    console.log(JSON.stringify(this.theaterSeats));
   }
 
-  selectUnselect(event: any){
-    console.log("event", event);
+  selectUnselect(row: any, column: any){
+    console.log("row", row);
+    console.log("column", column);
   }
 }
 
