@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared.service';
@@ -6,7 +6,8 @@ import { SharedService } from '../shared.service';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.scss']
+  styleUrls: ['./landing-page.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class LandingPageComponent {
 

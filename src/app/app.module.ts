@@ -17,6 +17,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { CustomerHomeComponent } from './customer-home/customer-home.component';
 import { HighlightDirective } from './highlight.directive';
+import { MovieListComponent } from './movie-list/movie-list.component';
+import { MovieScreeningComponent } from './movie-screening/movie-screening.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { HighlightDirective } from './highlight.directive';
     RegisterComponent,
     LandingPageComponent,
     CustomerHomeComponent,
-    HighlightDirective
+    HighlightDirective,
+    MovieListComponent,
+    MovieScreeningComponent
     
   ],
   imports: [

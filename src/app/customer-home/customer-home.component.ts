@@ -2,11 +2,12 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
 import { SharedService } from "../shared.service";
 import { CustomerService } from "../customer.service";
+import { City } from "../model/city-type";
 
 @Component({
   selector: "app-customer-home",
   templateUrl: "./customer-home.component.html",
-  styleUrls: ["./customer-home.component.scss"],
+  styleUrls: ["./customer-home.component.scss", "../app.component.scss"],
   encapsulation: ViewEncapsulation.None,
 })
 export class CustomerHomeComponent implements OnInit {
@@ -41,10 +42,10 @@ export class CustomerHomeComponent implements OnInit {
     this.customerService.findAllCities().subscribe(
       (res) => {
         this.cityList = res;
-        if (!this.sharedService.get("city")) {
+        if (!this.sharedService.get("customer-city")) {
           this.selectedCity = res[0].id;
         }else{
-          this.selectedCity = this.sharedService.get("city");
+          this.selectedCity = this.sharedService.get("customer-city").id;
         }
       },
       (error) => {
@@ -54,7 +55,11 @@ export class CustomerHomeComponent implements OnInit {
   }
 
   selectCity(e: any) {
-    this.sharedService.set("city", e.target.value);
+    let city: City = {
+      id: e.target.value,
+      city: ''
+    }
+    this.sharedService.set("customer-city", city);
   }
 
 
@@ -83,11 +88,6 @@ export class CustomerHomeComponent implements OnInit {
   }
 }
 
-
-interface City {
-  id: string;
-  city: string;
-}
 
 interface SeatRow {
   index: number;

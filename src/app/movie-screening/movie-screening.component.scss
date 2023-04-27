@@ -1,0 +1,32 @@
+.first-card {
+    margin: 1em 1em 1em 1em;
+    padding: 15px 15px 15px 15px;
+    // background: yellow;
+    background-color:white;
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(241, 241, 241);
+}
+
+
+
+.box-parent {
+    display: flex;
+    flex-flow:  wrap;
+    max-height: 100%;
+    width: 100%;
+    overflow: auto;
+    align-content: flex-start;
+    color: rgb(88, 88, 88);
+}
+
+.box {
+    margin: 1em 1em 1em 1em;
+    padding: 5px 15px 5px 15px;
+    &.with-border{
+        border-style: solid;
+        border-radius: 5px;
+        background: rgb(255, 255, 255);
+        
+    }
+}

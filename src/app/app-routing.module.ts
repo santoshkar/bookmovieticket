@@ -4,6 +4,8 @@ import { LogInComponent } from './log-in/log-in.component';
 import { RegisterComponent } from './register/register.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { CustomerHomeComponent } from './customer-home/customer-home.component';
+import { MovieListComponent } from './movie-list/movie-list.component';
+import { MovieScreeningComponent } from './movie-screening/movie-screening.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'landingpage' },
@@ -11,6 +13,8 @@ const routes: Routes = [
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'customer-home', component: CustomerHomeComponent },
+  { path: 'movie-list', component: MovieListComponent },
+  { path: 'movie-screening', component: MovieScreeningComponent },
 ];
 
 @NgModule({
