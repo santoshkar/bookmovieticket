@@ -1,12 +1,12 @@
 <mat-toolbar color="primary" class="app-header">
-  <span class="dropdown">
+  <!-- <span class="dropdown">
     <select [(ngModel)]="selectedCity" (change)="selectCity($event)">
       <option *ngFor="let city of cityList" [value]="city.cityId" class="items">
         {{ city.city }}
       </option>
     </select>
   </span>
-  <span class="triangle"> </span>
+  <span class="triangle"> </span> -->
   <span>
     <img src="assets/movie.png" />
   </span>
@@ -25,5 +25,21 @@
     >
       {{ column.index }}
     </div>
+  </div>
+
+  <div class="ticket-type">
+    <mat-button-toggle-group class="no-border">
+      <mat-button-toggle value="gold" class="small-width gold"
+        >GOLD</mat-button-toggle
+      >
+      <mat-button-toggle value="silver" class="small-width silver"
+        >SILVER</mat-button-toggle
+      >
+      <mat-button-toggle value="bronze" class="small-width bronze"
+        >BRONZE</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+    <div>Price: 300.00</div>
+    <button class="button-18">Make Payment</button>
   </div>
 </div>

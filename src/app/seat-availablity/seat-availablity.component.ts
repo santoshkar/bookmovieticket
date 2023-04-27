@@ -5,16 +5,15 @@ import { CustomerService } from "../customer.service";
 import { City } from "../model/city-type";
 
 @Component({
-  selector: "app-customer-home",
-  templateUrl: "./customer-home.component.html",
-  styleUrls: ["./customer-home.component.scss", "../app.component.scss"],
+  selector: 'app-seat-availablity',
+  templateUrl: './seat-availablity.component.html',
+  styleUrls: ['./seat-availablity.component.scss', "../app.component.scss"],
   encapsulation: ViewEncapsulation.None,
 })
-export class CustomerHomeComponent implements OnInit {
+export class SeatAvailablityComponent {
   cityList: City[];
   selectedCity: any;
   labelMap = new Map();
-
   
   theaterSeats = new Array();
 

@@ -46,5 +46,6 @@ export class MovieScreeningComponent {
 
   showAvailability(screen: any){
     console.log("selected screen", screen);
+    this.router.navigate(['seat-availability']);
   }
 }

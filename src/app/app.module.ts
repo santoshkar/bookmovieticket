@@ -15,10 +15,10 @@ import { LogInComponent } from './log-in/log-in.component';
 import { RegisterComponent } from './register/register.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { CustomerHomeComponent } from './customer-home/customer-home.component';
 import { HighlightDirective } from './highlight.directive';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieScreeningComponent } from './movie-screening/movie-screening.component';
+import { SeatAvailablityComponent } from './seat-availablity/seat-availablity.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +27,10 @@ import { MovieScreeningComponent } from './movie-screening/movie-screening.compo
     LogInComponent,
     RegisterComponent,
     LandingPageComponent,
-    CustomerHomeComponent,
     HighlightDirective,
     MovieListComponent,
-    MovieScreeningComponent
+    MovieScreeningComponent,
+    SeatAvailablityComponent
     
   ],
   imports: [

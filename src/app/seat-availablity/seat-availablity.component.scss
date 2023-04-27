@@ -1,0 +1,57 @@
+.ticket-type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    margin-top: 1em;
+}
+
+.mat-button-toggle{
+    background-color: rgb(243, 243, 237);
+    color: black;
+    margin-left: 5px;
+    
+    // &:hover {
+    //     background-color: transparent;
+    //     color: #1100ff !important;    
+    // }
+    &:active {
+        background: rgb(74, 66, 95);   
+    }
+}
+
+.mat-button-toggle-checked {
+    color: #67ec79 !important;
+    border: none;
+    &.gold {
+        background-color: goldenrod;
+        color:rgb(74, 66, 95) !important;
+        font-weight: bolder;
+        
+    }
+    &.silver {
+        background-color: silver;
+        color:rgb(74, 66, 95) !important;
+        font-weight: bolder;
+    }
+    &.bronze {
+        background-color: rgb(81, 59, 41);
+        font-weight: bolder;
+    }
+}
+
+.no-border {
+    border: none !important;
+}
+
+.small-width{
+    max-width: 6em;
+    width: 6em;
+    border-radius: 10px;
+    border: none !important;
+    // height: em;;
+}
