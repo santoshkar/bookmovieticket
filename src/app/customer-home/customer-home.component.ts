@@ -56,7 +56,7 @@ export class CustomerHomeComponent implements OnInit {
 
   selectCity(e: any) {
     let city: City = {
-      id: e.target.value,
+      cityId: e.target.value,
       city: ''
     }
     this.sharedService.set("customer-city", city);

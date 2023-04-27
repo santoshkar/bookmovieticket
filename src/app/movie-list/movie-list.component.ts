@@ -33,7 +33,7 @@ export class MovieListComponent {
   
   initMovieList(){
 
-    let cityId = this.sharedService.get("customer-city").id;
+    let cityId = this.sharedService.get("customer-city").cityId;
 
     this.movieService.findMoviesByCity(cityId).subscribe(
       (res) => {
@@ -51,9 +51,9 @@ export class MovieListComponent {
       (res) => {
         this.cityList = res;
         if (!this.sharedService.get("customer-city")) {
-          this.selectedCity = res[0].id;
+          this.selectedCity = res[0].cityId;
         }else{
-          this.selectedCity = this.sharedService.get("customer-city").id;
+          this.selectedCity = this.sharedService.get("customer-city").cityId;
         }
       },
       (error) => {
@@ -64,7 +64,7 @@ export class MovieListComponent {
 
   selectCity(e: any) {
     let city: City = {
-      id: e.target.value,
+      cityId: e.target.value,
       city: ''
     }
     this.sharedService.set("customer-city", city);

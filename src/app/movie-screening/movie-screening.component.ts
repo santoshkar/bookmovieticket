@@ -12,6 +12,10 @@ import { MovieService } from "../movie.service";
 export class MovieScreeningComponent {
 
   selectedMovie: any;
+  selectedCity: any;
+  screeningDetails: any = {
+    reenList: {}
+  }
 
   constructor(
     private router: Router,
@@ -21,12 +25,26 @@ export class MovieScreeningComponent {
   ) {}
 
   ngOnInit(): void {
-    this.initPage();
-    // this.initMovieList();
+    this.initMovieScreeningData();
   }
 
-  initPage(): void {
+  initMovieScreeningData(): void {
     this.selectedMovie = this.sharedService.get("selected-movie");
+    this.selectedCity = this.sharedService.get("customer-city");
+    console.log("movie", this.selectedMovie);
+    console.log("city", this.selectedCity);
+
+    this.movieService.findMoviesScreening(this.selectedMovie.movieId, this.selectedCity.cityId).subscribe(
+      (res) => {
+        this.screeningDetails = res;
+      },
+      (error) => {
+        console.log("error : ", error);
+      }
+    );
   }
 
+  showAvailability(screen: any){
+    console.log("selected screen", screen);
+  }
 }

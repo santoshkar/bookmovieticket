@@ -15,4 +15,12 @@ export class MovieService {
     queryParams = queryParams.append("cityId", cityId);
     return this.http.get(url, { params: queryParams });
   }
+
+  findMoviesScreening( movieId: string, cityId: string): Observable<any> {
+    let url = 'http://localhost:8080/api/screening';
+    let queryParams:HttpParams = new HttpParams();
+    queryParams = queryParams.append("movieId", movieId);
+    queryParams = queryParams.append("cityId", cityId);
+    return this.http.get(url, { params: queryParams });
+  }
 }

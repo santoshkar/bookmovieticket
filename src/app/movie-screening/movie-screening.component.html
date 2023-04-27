@@ -1,41 +1,25 @@
 <mat-toolbar color="primary" class="app-header">
   <span>
-    <img src="assets/movie.png" />
+    <img src="assets/movie.png" alt="movie icon" />
   </span>
 </mat-toolbar>
 <br /><br /><br /><br /><br /><br /><br />
 
-{{ selectedMovie | json }}
-
-<mat-card class="first-card">
-  <mat-card-conten>
-    <div class="box-parent">
-      <div class="box">PVR - Hyderabad</div>
-      <div class="box with-border">10:12 AM</div>
-      <div class="box with-border">10:12 AM</div>
-      <div class="box with-border">10:12 AM</div>
-    </div>
-  </mat-card-conten>
-</mat-card>
-
-<mat-card class="first-card">
-  <mat-card-conten>
-    <div class="box-parent">
-      <div class="box">PVR - Hyderabad</div>
-      <div class="box with-border">10:12 AM</div>
-      <div class="box with-border">10:12 AM</div>
-      <div class="box with-border">10:12 AM</div>
-    </div>
-  </mat-card-conten>
-</mat-card>
-
-<mat-card class="first-card">
-  <mat-card-conten>
-    <div class="box-parent">
-      <div class="box">PVR - Hyderabad</div>
-      <div class="box with-border">10:12 AM</div>
-      <div class="box with-border">10:12 AM</div>
-      <div class="box with-border">10:12 AM</div>
-    </div>
-  </mat-card-conten>
-</mat-card>
+<div *ngFor="let screeObj of screeningDetails.screenList">
+  <mat-card class="first-card" *ngIf="screeObj.screens.length > 0">
+    <mat-card-content>
+      <div class="box-parent">
+        <div class="screening-box">
+          {{ screeObj.theatreName }}, {{ screeObj.city }},
+        </div>
+        <div
+          *ngFor="let screen of screeObj.screens"
+          class="screening-box with-border"
+          (click)="showAvailability(screen)"
+        >
+          {{ screen.time }}
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
