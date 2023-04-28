@@ -3,7 +3,8 @@ import { Router } from "@angular/router";
 import { SharedService } from "../shared.service";
 import { CustomerService } from "../customer.service";
 import { MovieService } from "../movie.service";
-import { City } from "../model/city-type";
+import { City } from "../model/city";
+import { Movie } from "../model/movie";
 
 @Component({
   selector: 'app-movie-list',
@@ -14,8 +15,8 @@ import { City } from "../model/city-type";
 export class MovieListComponent {
 
   cityList: City[];
-  movieList: any[];
-  selectedCity: any;
+  movieList: Movie[];
+  selectedCity: string;
 
   constructor(
     
@@ -38,7 +39,6 @@ export class MovieListComponent {
     this.movieService.findMoviesByCity(cityId).subscribe(
       (res) => {
         this.movieList = res;
-        console.log(this.movieList);
       },
       (error) => {
         console.log("error : ", error);
@@ -76,7 +76,7 @@ export class MovieListComponent {
     this.router.navigate([uri]));
  }
 
- bookticket(movie: any){
+ bookticket(movie: Movie){
   this.sharedService.set("selected-movie", movie);
   this.router.navigate(['movie-screening']);
  }

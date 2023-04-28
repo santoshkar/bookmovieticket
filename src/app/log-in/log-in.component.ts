@@ -21,7 +21,6 @@ export class LogInComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.sharedService.set("projectId", this.projectId);
   }
 
   login(): void {
@@ -32,7 +31,6 @@ export class LogInComponent {
     this.loginService.customerlogin(body).subscribe(
       (res) => {
         this.isUserFound = true;
-        console.log("res", res);
         this.sharedService.set("customer-city", res.city);
         this.router.navigate(['movie-list']);
       },

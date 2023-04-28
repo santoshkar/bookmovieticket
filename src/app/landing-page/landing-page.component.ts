@@ -15,7 +15,6 @@ export class LandingPageComponent {
     private sharedService: SharedService) { }
   
     ngOnInit(): void {
-    // this.sharedService.set("projectId", this.projectId);
   }
 
   loginpage(){

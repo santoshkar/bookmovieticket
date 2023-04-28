@@ -2,7 +2,11 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Router } from "@angular/router";
 import { SharedService } from "../shared.service";
 import { CustomerService } from "../customer.service";
-import { City } from "../model/city-type";
+import { City } from "../model/city";
+import { MovieService } from "../movie.service";
+import { TicketPrice } from "../model/ticket-price";
+import { MovieScreening } from "../model/movie-screening";
+import { SelectedScreenDetails } from "../model/selected-screen-details";
 
 @Component({
   selector: 'app-seat-availablity',
@@ -14,19 +18,41 @@ export class SeatAvailablityComponent {
   cityList: City[];
   selectedCity: any;
   labelMap = new Map();
+  ticketPriceObject: TicketPrice;
+  ticketPrice: number;
+  selectedScreenDetails: SelectedScreenDetails;
+  totalPaybleAmount: number = 0;
   
   theaterSeats = new Array();
 
   constructor(
     private router: Router,
-    private customerService: CustomerService,
+    private movieService: MovieService,
     private sharedService: SharedService
   ) {}
 
   ngOnInit(): void {
-    this.initCityDropdown();
+
+    this.selectedScreenDetails = this.sharedService.get("selected-screen-details");
+
     this.initLabels();
     this.showSeats();
+    this.pullTicketPrice();
+  }
+
+  updatePrice(ticketType: string){
+
+    switch(ticketType){
+      case 'GOLD':
+        this.ticketPrice = this.ticketPriceObject.gold;
+        break;
+      case 'SILVER':
+        this.ticketPrice = this.ticketPriceObject.silver;
+        break;
+      case 'BRONZE':
+        this.ticketPrice = this.ticketPriceObject.bronze;
+        break;
+    }
   }
 
   initLabels(){
@@ -37,33 +63,7 @@ export class SeatAvailablityComponent {
     this.labelMap.set(4, 'E');
   }
 
-  initCityDropdown(){
-    this.customerService.findAllCities().subscribe(
-      (res) => {
-        this.cityList = res;
-        if (!this.sharedService.get("customer-city")) {
-          this.selectedCity = res[0].id;
-        }else{
-          this.selectedCity = this.sharedService.get("customer-city").id;
-        }
-      },
-      (error) => {
-        console.log("error : ", error);
-      }
-    );
-  }
-
-  selectCity(e: any) {
-    let city: City = {
-      cityId: e.target.value,
-      city: ''
-    }
-    this.sharedService.set("customer-city", city);
-  }
-
-
   showSeats(){
-    
     let seatRow: SeatRow;
     for(let row = 0; row < 5; row++)  { 
       let columns: SeatColumn[] = new Array();;
@@ -84,6 +84,18 @@ export class SeatAvailablityComponent {
   selectUnselect(row: any, column: any){
     console.log("row", row);
     console.log("column", column);
+  }
+
+  pullTicketPrice(): void {
+    // let selectedScreen: SelectedScreenDetails = this.sharedService.get("selected-screen-id");
+    this.movieService.pullTicketPrice(this.selectedScreenDetails.screen.screenId).subscribe(
+      (res) => {
+        this.ticketPriceObject = res;
+      },
+      (error) => {
+        console.log("error : ", error);
+      }
+    );
   }
 }
 

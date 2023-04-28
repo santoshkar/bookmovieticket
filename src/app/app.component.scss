@@ -122,27 +122,3 @@ select {
   text-align: center;
 }
     
-.seat-row {
-  // margin-left: 20%;
-  margin-top: 15px;
-}
-
-.theater {
-  &.seats{
-      margin-top: 14em;
-      border-style: ridge;
-      margin-left: 20%;
-     
-  }
-  &.screen{
-      text-align: center;
-      margin-top: 9em;
-      margin-left: 27%;
-      font-size: large;
-      
-  }
-  position: absolute;
-  
-  padding: 0em 1em 1em 1em;
-  
-}

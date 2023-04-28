@@ -34,7 +34,7 @@
         
     }
     &.silver {
-        background-color: silver;
+        background-color: rgb(157, 157, 157);
         color:rgb(74, 66, 95) !important;
         font-weight: bolder;
     }
@@ -53,5 +53,58 @@
     width: 6em;
     border-radius: 10px;
     border: none !important;
-    // height: em;;
+}
+
+
+.seat-row {
+    // margin-left: 20%;
+    margin-top: 15px;
+  }
+  
+  .theater {
+    &.seats{
+        margin-top: 4em;
+        border-style: ridge;
+        margin-left: 20%;
+       
+    }
+    &.screen{
+        text-align: center;
+        // margin-top: 9em;
+        margin-left: 27%;
+        font-size: large;
+        
+    }
+    position: absolute;
+    
+    padding: 0em 1em 1em 1em;
+    
+  }
+
+  
+.theatre-details {
+    margin-bottom: 2px;
+    background: rgb(108, 106, 106) !important;
+    margin: 8rem 2rem 2rem 2rem;
+    z-index: 10;
+}
+
+.movie-title {
+    color: rgb(104, 8, 8);
+    font-size: large;
+    font-weight: bold;
+    padding-left: 2em;
+    &.small {
+        padding-left: 3em;
+        font-size: small;
+        font-weight: normal;
+
+    }
+}
+
+.payble-amount {
+    color: rgb(104, 8, 8);
+    font-size: large;
+    font-weight: bold;
+    padding: 1em 0 1em 0;
 }

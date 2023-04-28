@@ -1,14 +1,32 @@
 .first-card {
-    margin: 1em 1em 1em 1em;
-    padding: 15px 15px 15px 15px;
+    // margin: 1em 1em 1em 1em;
+    // padding: 0px 15px 15px 15px;
     // background: yellow;
     background-color:white;
-    border-style: solid;
-    border-width: thin;
+    border-style: none;
     border-color: rgb(241, 241, 241);
+    border: none !important;
+
 }
 
+mat-card{
+    mat-card-content{
+        background-color: white !important;
+    }
+    display: inline !important;
+}
 
+.mdc-card {
+    // display: contents !important;
+    border-style: dashed;
+}
+.mat-mdc-card-content:last-child {
+    padding-bottom: 0 !important;
+}
+
+.mat-mdc-card-content:first-child {
+    padding-top: 0 !important;
+}
 
 .box-parent {
     display: flex;
@@ -23,13 +41,28 @@
 .screening-box {
     margin: 1em 1em 1em 1em;
     padding: 5px 15px 5px 15px;
+    width: 15em;
     &.with-border{
         border-style: solid;
         border-radius: 5px;
         background: rgb(255, 255, 255);
+        width: 4em;
         
     }
     &:hover {
         cursor: pointer;
+    }
+}
+
+.movie-title {
+    color: rgb(104, 8, 8);
+    font-size: large;
+    font-weight: bold;
+    padding-left: 2em;
+    &.small {
+        padding-left: 3em;
+        font-size: small;
+        font-weight: normal;
+
     }
 }

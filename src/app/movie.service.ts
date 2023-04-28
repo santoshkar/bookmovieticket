@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { TicketPrice } from './model/ticket-price';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,13 @@ export class MovieService {
     let queryParams:HttpParams = new HttpParams();
     queryParams = queryParams.append("movieId", movieId);
     queryParams = queryParams.append("cityId", cityId);
+    return this.http.get(url, { params: queryParams });
+  }
+
+  pullTicketPrice(screenId: string): Observable<any> {
+    let url = 'http://localhost:8080/api/ticket-price';
+    let queryParams:HttpParams = new HttpParams();
+    queryParams = queryParams.append("movieScreenId", screenId);
     return this.http.get(url, { params: queryParams });
   }
 }

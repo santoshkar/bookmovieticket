@@ -5,6 +5,13 @@
 </mat-toolbar>
 <br /><br /><br /><br /><br /><br /><br />
 
+<div class="movie-title">
+  {{ selectedMovie.title }}
+</div>
+<div class="movie-title small">
+  {{ selectedMovie.language }}
+</div>
+<br /><br /><br />
 <div *ngFor="let screeObj of screeningDetails.screenList">
   <mat-card class="first-card" *ngIf="screeObj.screens.length > 0">
     <mat-card-content>
@@ -15,7 +22,9 @@
         <div
           *ngFor="let screen of screeObj.screens"
           class="screening-box with-border"
-          (click)="showAvailability(screen)"
+          (click)="
+            showAvailability(screeObj.theatreName, screeObj.city, screen)
+          "
         >
           {{ screen.time }}
         </div>
