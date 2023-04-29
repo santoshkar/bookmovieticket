@@ -1,34 +1,57 @@
-<mat-toolbar color="primary" class="app-header">
-  <span>
-    <img src="assets/movie.png" alt="movie icon" />
-  </span>
-</mat-toolbar>
-<br /><br /><br /><br /><br /><br /><br />
+<div id="movie-screening">
+  <mat-toolbar color="primary" class="app-header">
+    <span>
+      <img src="assets/movie.png" alt="movie icon" />
+    </span>
+  </mat-toolbar>
+  <br /><br /><br /><br /><br /><br /><br />
 
-<div class="movie-title">
-  {{ selectedMovie.title }}
-</div>
-<div class="movie-title small">
-  {{ selectedMovie.language }}
-</div>
-<br /><br /><br />
-<div *ngFor="let screeObj of screeningDetails.screenList">
-  <mat-card class="first-card" *ngIf="screeObj.screens.length > 0">
-    <mat-card-content>
-      <div class="box-parent">
-        <div class="screening-box">
-          {{ screeObj.theatreName }}, {{ screeObj.city }},
+  <div class="movie-title">
+    {{ selectedMovie.title }}
+  </div>
+  <div class="movie-title small">
+    {{ selectedMovie.language }}
+  </div>
+
+  <div class="date-area">
+    <span>Movie Date:</span>
+    <span class="date-area--inner">
+      <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="movieDate" />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </span>
+    <span class="button-area">
+      <button class="show-buttom" (click)="showTimes()">Show Time</button>
+    </span>
+    <div
+      *ngIf="showMessage"
+      style="color: red; padding-top: 2rem; font-size: small; font-weight: 500"
+    >
+      {{ message }}
+    </div>
+  </div>
+
+  <div *ngFor="let show of showDetails.shows">
+    <mat-card class="first-card" *ngIf="show.showTimes.length > 0">
+      <mat-card-content>
+        <div class="box-parent">
+          <div class="screening-box">
+            {{ show.theatreName }}, {{ show.cityName }},
+          </div>
+          <div
+            *ngFor="let showTime of show.showTimes"
+            class="screening-box with-border"
+            (click)="showAvailability(show, showTime)"
+          >
+            {{ showTime.showTime }}
+          </div>
         </div>
-        <div
-          *ngFor="let screen of screeObj.screens"
-          class="screening-box with-border"
-          (click)="
-            showAvailability(screeObj.theatreName, screeObj.city, screen)
-          "
-        >
-          {{ screen.time }}
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

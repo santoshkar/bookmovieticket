@@ -1,68 +1,134 @@
-.first-card {
-    // margin: 1em 1em 1em 1em;
-    // padding: 0px 15px 15px 15px;
-    // background: yellow;
-    background-color:white;
-    border-style: none;
-    border-color: rgb(241, 241, 241);
-    border: none !important;
-
-}
-
-mat-card{
-    mat-card-content{
-        background-color: white !important;
+#movie-screening {
+    .first-card {
+        // margin: 1em 1em 1em 1em;
+        // padding: 0px 15px 15px 15px;
+        // background: yellow;
+        background-color:white;
+        border-style: none;
+        border-color: rgb(241, 241, 241);
+        border: none !important;
+    
     }
-    display: inline !important;
-}
+    
+    mat-card{
+        mat-card-content{
+            background-color: white !important;
+        }
+        display: inline !important;
+    }
+    
+    .mat-mdc-card-content:last-child {
+        padding-bottom: 0 !important;
+    }
+    
+    .mat-mdc-card-content:first-child {
+        padding-top: 0 !important;
+    }
+    
+    .box-parent {
+        display: flex;
+        flex-flow:  wrap;
+        max-height: 100%;
+        width: 100%;
+        overflow: auto;
+        align-content: flex-start;
+        color: rgb(88, 88, 88);
+    }
+    
+    .screening-box {
+        margin: 1em 1em 1em 1em;
+        padding: 5px 15px 5px 15px;
+        width: 15em;
+        &.with-border{
+            border-style: solid;
+            border-radius: 5px;
+            background: rgb(255, 255, 255);
+            width: 5em;
+            
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    
+    .movie-title {
+        color: rgb(104, 8, 8);
+        font-size: large;
+        font-weight: bold;
+        padding-left: 2em;
+        &.small {
+            padding-left: 3em;
+            font-size: small;
+            font-weight: normal;
+    
+        }
+    }
 
-.mdc-card {
-    // display: contents !important;
-    border-style: dashed;
-}
-.mat-mdc-card-content:last-child {
-    padding-bottom: 0 !important;
-}
+    .mat-mdc-icon-button{
+        color: black !important;
+        // margin-top: -18px !important;
+    }
 
-.mat-mdc-card-content:first-child {
-    padding-top: 0 !important;
-}
-
-.box-parent {
-    display: flex;
-    flex-flow:  wrap;
-    max-height: 100%;
-    width: 100%;
-    overflow: auto;
-    align-content: flex-start;
-    color: rgb(88, 88, 88);
-}
-
-.screening-box {
-    margin: 1em 1em 1em 1em;
-    padding: 5px 15px 5px 15px;
-    width: 15em;
-    &.with-border{
+    .date-area{
+        color:rgb(88, 88, 88);
+        margin-left: 3rem;
+        &--inner{
+            margin-left: 11rem;
+        }
+    }
+    .mdc-text-field--filled:not(.mdc-text-field--disabled){
+        background-color: white !important;
+        // border-style: ridge;
         border-style: solid;
         border-radius: 5px;
         background: rgb(255, 255, 255);
-        width: 4em;
+        width: 10em;
+        height: 40px;
+        // margin-left: 18.7rem;
+        color: rgb(88, 88, 88);
+
+    }
+    .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input{
+        color: black !important;
+        // margin-top: -18px !important;
         
     }
-    &:hover {
-        cursor: pointer;
+
+    .mat-mdc-form-field-subscript-wrapper{
+        height: 1em;
     }
+    
+    .mat-mdc-form-field-infix{
+        min-height: 0 !important;
+        height: 0px;
+    }
+    
+    .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix{
+        padding-top: 8px;
+    }
+    
+    .mat-mdc-icon-button.mat-mdc-button-base{
+        padding: 0;
+    }
+    
 }
 
-.movie-title {
-    color: rgb(104, 8, 8);
-    font-size: large;
-    font-weight: bold;
-    padding-left: 2em;
-    &.small {
-        padding-left: 3em;
-        font-size: small;
-        font-weight: normal;
-
-    }
+.button-area{
+    margin-left: 1rem;
+    margin-bottom: 1 em;
+    position: absolute;
+    margin-top: 5px;
 }
+
+.show-buttom {
+    background: aliceblue;
+    border-style: ridge;
+    border-width: thin;
+    border-radius: 3px;
+    height: 2rem;
+    color: rgb(88,88,88);
+    font-size: inherit;
+    font-weight: 600;
+    border-color: azure;
+}
+

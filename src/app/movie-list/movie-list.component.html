@@ -2,7 +2,7 @@
   <span class="dropdown">
     <select [(ngModel)]="selectedCity" (change)="selectCity($event)">
       <option *ngFor="let city of cityList" [value]="city.cityId" class="items">
-        {{ city.city }}
+        {{ city.name }}
       </option>
     </select>
   </span>

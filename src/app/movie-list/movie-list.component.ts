@@ -65,7 +65,7 @@ export class MovieListComponent {
   selectCity(e: any) {
     let city: City = {
       cityId: e.target.value,
-      city: ''
+      name: ''
     }
     this.sharedService.set("customer-city", city);
     this.redirectTo('movie-list');

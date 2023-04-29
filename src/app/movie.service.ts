@@ -17,9 +17,10 @@ export class MovieService {
     return this.http.get(url, { params: queryParams });
   }
 
-  findMoviesScreening( movieId: string, cityId: string): Observable<any> {
-    let url = 'http://localhost:8080/api/screening';
+  findMoviesShows( movieId: string, cityId: string, date: string): Observable<any> {
+    let url = 'http://localhost:8080/api/show';
     let queryParams:HttpParams = new HttpParams();
+    queryParams = queryParams.append("date", date);
     queryParams = queryParams.append("movieId", movieId);
     queryParams = queryParams.append("cityId", cityId);
     return this.http.get(url, { params: queryParams });

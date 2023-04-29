@@ -19,6 +19,7 @@ import { HighlightDirective } from './highlight.directive';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieScreeningComponent } from './movie-screening/movie-screening.component';
 import { SeatAvailablityComponent } from './seat-availablity/seat-availablity.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { SeatAvailablityComponent } from './seat-availablity/seat-availablity.co
     FlexLayoutModule,
     
   ],
-  providers: [SharedService],
+  providers: [SharedService, DatePipe],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

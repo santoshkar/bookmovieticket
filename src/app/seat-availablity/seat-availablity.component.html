@@ -7,17 +7,17 @@
 <mat-card class="theatre-details">
   <mat-card-header>
     <mat-card-title
-      >{{ selectedScreenDetails.movie.title }}({{
-        selectedScreenDetails.movie.language
+      >{{ selectedShow.title }}({{
+        selectedShow.movieLanguage
       }})</mat-card-title
     >
     <mat-card-subtitle>{{
-      selectedScreenDetails.screen.time
+      selectedShow.selectedTime.showTime
     }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-actions>
-    <button mat-button>{{ selectedScreenDetails.theatre }}</button>
-    <button mat-button>({{ selectedScreenDetails.city }})</button>
+    <button mat-button>{{ selectedShow.theatreName }}</button>
+    <button mat-button>({{ selectedShow.cityName }})</button>
   </mat-card-actions>
 </mat-card>
 

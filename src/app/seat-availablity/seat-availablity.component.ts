@@ -6,7 +6,7 @@ import { City } from "../model/city";
 import { MovieService } from "../movie.service";
 import { TicketPrice } from "../model/ticket-price";
 import { MovieScreening } from "../model/movie-screening";
-import { SelectedScreenDetails } from "../model/selected-screen-details";
+import { SelectedShow } from "../model/selected-show";
 
 @Component({
   selector: 'app-seat-availablity',
@@ -20,7 +20,7 @@ export class SeatAvailablityComponent {
   labelMap = new Map();
   ticketPriceObject: TicketPrice;
   ticketPrice: number;
-  selectedScreenDetails: SelectedScreenDetails;
+  selectedShow: SelectedShow;
   totalPaybleAmount: number = 0;
   
   theaterSeats = new Array();
@@ -33,11 +33,13 @@ export class SeatAvailablityComponent {
 
   ngOnInit(): void {
 
-    this.selectedScreenDetails = this.sharedService.get("selected-screen-details");
+    this.selectedShow = this.sharedService.get("selected-show");
+
+    console.log(">>>>>>>>>>>", this.selectedShow)
 
     this.initLabels();
     this.showSeats();
-    this.pullTicketPrice();
+    // this.pullTicketPrice();
   }
 
   updatePrice(ticketType: string){
@@ -86,17 +88,20 @@ export class SeatAvailablityComponent {
     console.log("column", column);
   }
 
-  pullTicketPrice(): void {
-    // let selectedScreen: SelectedScreenDetails = this.sharedService.get("selected-screen-id");
-    this.movieService.pullTicketPrice(this.selectedScreenDetails.screen.screenId).subscribe(
-      (res) => {
-        this.ticketPriceObject = res;
-      },
-      (error) => {
-        console.log("error : ", error);
-      }
-    );
-  }
+  // pullTicketPrice(): void {
+  //   console.log("this.selectedShow", JSON.stringify(this.selectedShow));
+  //   let request = {
+  //     screenId: this.selectedShow.screenId,
+  //   }
+  //   this.movieService.pullTicketPrice(this.selectedScreenDetails.screenId).subscribe(
+  //     (res) => {
+  //       this.ticketPriceObject = res;
+  //     },
+  //     (error) => {
+  //       console.log("error : ", error);
+  //     }
+  //   );
+  // }
 }
 
 
