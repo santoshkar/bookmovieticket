@@ -7,6 +7,8 @@ import { MovieService } from "../movie.service";
 import { TicketPrice } from "../model/ticket-price";
 import { MovieScreening } from "../model/movie-screening";
 import { SelectedShow } from "../model/selected-show";
+import { SeatColumn } from "../model/seat-column";
+import { BookingMaster } from "../model/booking-master";
 
 @Component({
   selector: 'app-seat-availablity',
@@ -18,12 +20,12 @@ export class SeatAvailablityComponent {
   cityList: City[];
   selectedCity: any;
   labelMap = new Map();
-  // ticketPriceObject: TicketPrice;
   ticketPrice: number;
   selectedShow: SelectedShow;
   totalPaybleAmount: number = 0;
   
   theaterSeats: SeatRow[] = [];
+  selectedSeatIdsForBooking = new Map();
 
   constructor(
     private router: Router,
@@ -65,11 +67,9 @@ export class SeatAvailablityComponent {
   }
 
   showSeats(){
-    let seatRow: SeatRow;
-
-    this.movieService.pullAllSeatsForScreen(this.selectedShow.selectedTime.screenId).subscribe(
+    this.movieService.pullAllSeatsForScreen(this.selectedShow.selectedTime.screenId,
+      this.selectedShow.selectedTime.showId).subscribe(
       (res) => {
-        console.log("For seat",res);
         this.theaterSeats = res.rows;
       },
       (error) => {
@@ -79,11 +79,36 @@ export class SeatAvailablityComponent {
   }
 
   selectUnselect(row: string, column: SeatColumn){
-    if(column.bookingStatus === 0 || column.bookingStatus === 1){
-      column.bookingStatus = column.bookingStatus === 1 ? 0 : 1;
+    if(column.seatAvailability !== 'AVAILABLE'){
+      return;
     }
-    console.log("row", row);
-    console.log("column", column);
+
+    if(column.currentlySelected){
+      this.selectedSeatIdsForBooking.set(column.seatId, column);
+    } else {
+      this.selectedSeatIdsForBooking.delete(column.seatId);
+    }
+  }
+
+  bookTicket(): void {
+      let customerId = "3c69ceed-6a04-415c-8d6b-d1565d9c6d3b";  //TODO: Hardcoded
+      let bookingMaster:BookingMaster = {
+        customerId: customerId,
+        showId: this.selectedShow.selectedTime.showId,
+        selectedSeats: Array.from( this.selectedSeatIdsForBooking.keys()),
+        bookingStatus: "HOLD",
+        paymentMode: "",
+        amount: 0
+      };
+      console.log("bookingMaster", bookingMaster);
+      this.movieService.bookTicket(bookingMaster).subscribe(
+        (res) => {
+          console.log("Booking Done Successfully")
+        },
+        (error) => {
+          console.log("error : ", error);
+        }
+      );
   }
 
   pullTicketPrice(): void {
@@ -103,9 +128,6 @@ interface SeatRow {
   columns: SeatColumn[];
 }
 
-interface SeatColumn {
-  label: string;
-  bookingStatus: number;
-}
+
 
 

@@ -108,3 +108,21 @@
     font-weight: bold;
     padding: 1em 0 1em 0;
 }
+
+.seat-booking-style {
+    margin-left: 10px;
+    width: 30px;
+    height: 20px;
+    text-align: center;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    &.available{
+        background: white;
+        border: #67ec79;
+        border-style: solid;
+    }
+    &.not-available{
+        background: lightgray;
+    }
+}

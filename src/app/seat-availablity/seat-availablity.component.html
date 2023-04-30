@@ -28,8 +28,12 @@
     <span class="row-label">{{ row.label }}</span>
     <div
       *ngFor="let column of row.columns"
-      [appHighlight]="'green'"
-      class="seat-booking-style"
+      [appHighlight]="column"
+      [ngClass]="
+        column.seatAvailability === 'AVAILABLE'
+          ? 'seat-booking-style available'
+          : 'seat-booking-style not-available'
+      "
       (click)="selectUnselect(row.label, column)"
     >
       {{ column.label }}
@@ -59,7 +63,7 @@
     </mat-button-toggle-group>
     -->
     <div>Price: {{ ticketPrice }}</div>
-    <button class="button-18">Make Payment</button>
+    <button class="button-18" (click)="bookTicket()">Make Payment</button>
   </div>
   <div class="payble-amount">Total Payble amount: {{ totalPaybleAmount }}</div>
 </div>

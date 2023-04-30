@@ -43,8 +43,6 @@ export class MovieScreeningComponent {
     this.selectedMovie = this.sharedService.get("selected-movie");
     this.selectedCity = this.sharedService.get("customer-city");
     this.selectedTheatre = this.sharedService.get("selected-theatre");
-
-  
   }
 
   showTimes(){
@@ -69,8 +67,6 @@ export class MovieScreeningComponent {
   showAvailability(show: SelectedShow, showTime: SelectedTime){
 
     show.selectedTime = showTime;
-
-    console.log("For req of availability", JSON.stringify(show));
     this.sharedService.set("selected-show", show);
     this.router.navigate(['seat-availability']);
   }

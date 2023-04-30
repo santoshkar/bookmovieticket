@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TicketPrice } from './model/ticket-price';
+import { BookingMaster } from './model/booking-master';
 
 @Injectable({
   providedIn: 'root'
@@ -33,10 +34,17 @@ export class MovieService {
     return this.http.get(url, { params: queryParams });
   }
 
-  pullAllSeatsForScreen(screenId: string): Observable<any> {
+  pullAllSeatsForScreen(screenId: string, showId: string): Observable<any> {
     let url = 'http://localhost:8080/api/seat';
     let queryParams:HttpParams = new HttpParams();
     queryParams = queryParams.append("screenId", screenId);
+    queryParams = queryParams.append("showId", showId);
     return this.http.get(url, { params: queryParams });
+  }
+
+  bookTicket(bookingMaster: BookingMaster): Observable<any> {
+    let url = 'http://localhost:8080/api/book';
+    let queryParams:HttpParams = new HttpParams();
+    return this.http.post(url, bookingMaster);
   }
 }
