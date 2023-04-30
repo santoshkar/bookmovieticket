@@ -18,12 +18,12 @@ export class SeatAvailablityComponent {
   cityList: City[];
   selectedCity: any;
   labelMap = new Map();
-  ticketPriceObject: TicketPrice;
+  // ticketPriceObject: TicketPrice;
   ticketPrice: number;
   selectedShow: SelectedShow;
   totalPaybleAmount: number = 0;
   
-  theaterSeats = new Array();
+  theaterSeats: SeatRow[] = [];
 
   constructor(
     private router: Router,
@@ -35,26 +35,25 @@ export class SeatAvailablityComponent {
 
     this.selectedShow = this.sharedService.get("selected-show");
 
-    console.log(">>>>>>>>>>>", this.selectedShow)
-
     this.initLabels();
     this.showSeats();
-    // this.pullTicketPrice();
+    this.pullTicketPrice();
   }
 
   updatePrice(ticketType: string){
 
-    switch(ticketType){
-      case 'GOLD':
-        this.ticketPrice = this.ticketPriceObject.gold;
-        break;
-      case 'SILVER':
-        this.ticketPrice = this.ticketPriceObject.silver;
-        break;
-      case 'BRONZE':
-        this.ticketPrice = this.ticketPriceObject.bronze;
-        break;
-    }
+    // this.ticketPrice = this.ticketPriceObject.price;
+    // switch(ticketType){
+    //   case 'GOLD':
+    //     this.ticketPrice = this.ticketPriceObject.gold;
+    //     break;
+    //   case 'SILVER':
+    //     this.ticketPrice = this.ticketPriceObject.silver;
+    //     break;
+    //   case 'BRONZE':
+    //     this.ticketPrice = this.ticketPriceObject.bronze;
+    //     break;
+    // }
   }
 
   initLabels(){
@@ -67,52 +66,46 @@ export class SeatAvailablityComponent {
 
   showSeats(){
     let seatRow: SeatRow;
-    for(let row = 0; row < 5; row++)  { 
-      let columns: SeatColumn[] = new Array();;
-      for(let col = 0; col < 10; col++)  {
-        columns.push({
-            index: col,
-            isBooked: false
-          });
+
+    this.movieService.pullAllSeatsForScreen(this.selectedShow.selectedTime.screenId).subscribe(
+      (res) => {
+        console.log("For seat",res);
+        this.theaterSeats = res.rows;
+      },
+      (error) => {
+        console.log("error : ", error);
       }
-      seatRow = {
-        index: this.labelMap.get(row),
-        columns: columns
-      }
-      this.theaterSeats.push(seatRow);
-    }
+    );
   }
 
-  selectUnselect(row: any, column: any){
+  selectUnselect(row: string, column: SeatColumn){
+    if(column.bookingStatus === 0 || column.bookingStatus === 1){
+      column.bookingStatus = column.bookingStatus === 1 ? 0 : 1;
+    }
     console.log("row", row);
     console.log("column", column);
   }
 
-  // pullTicketPrice(): void {
-  //   console.log("this.selectedShow", JSON.stringify(this.selectedShow));
-  //   let request = {
-  //     screenId: this.selectedShow.screenId,
-  //   }
-  //   this.movieService.pullTicketPrice(this.selectedScreenDetails.screenId).subscribe(
-  //     (res) => {
-  //       this.ticketPriceObject = res;
-  //     },
-  //     (error) => {
-  //       console.log("error : ", error);
-  //     }
-  //   );
-  // }
+  pullTicketPrice(): void {
+    this.movieService.pullTicketPrice(this.selectedShow.selectedTime.screenId).subscribe(
+      (res) => {
+        this.ticketPrice  = res.price;
+      },
+      (error) => {
+        console.log("error : ", error);
+      }
+    );
+  }
 }
 
-
 interface SeatRow {
-  index: number;
+  label: string;
   columns: SeatColumn[];
 }
 
 interface SeatColumn {
-  index: number;
-  isBooked: boolean;
+  label: string;
+  bookingStatus: number;
 }
 
 

@@ -25,19 +25,19 @@
 
 <div class="theater seats">
   <div class="seat-row" *ngFor="let row of theaterSeats" style="display: flex">
-    <span class="row-label">{{ row.index }}</span>
+    <span class="row-label">{{ row.label }}</span>
     <div
       *ngFor="let column of row.columns"
       [appHighlight]="'green'"
       class="seat-booking-style"
-      (click)="selectUnselect(row.index, column.index)"
+      (click)="selectUnselect(row.label, column)"
     >
-      {{ column.index }}
+      {{ column.label }}
     </div>
   </div>
 
   <div class="ticket-type">
-    <mat-button-toggle-group class="no-border">
+    <!-- <mat-button-toggle-group class="no-border">
       <mat-button-toggle
         value="gold"
         class="small-width gold"
@@ -55,8 +55,9 @@
         class="small-width bronze"
         (click)="updatePrice('BRONZE')"
         >BRONZE</mat-button-toggle
-      >
+      > 
     </mat-button-toggle-group>
+    -->
     <div>Price: {{ ticketPrice }}</div>
     <button class="button-18">Make Payment</button>
   </div>

@@ -29,7 +29,14 @@ export class MovieService {
   pullTicketPrice(screenId: string): Observable<any> {
     let url = 'http://localhost:8080/api/ticket-price';
     let queryParams:HttpParams = new HttpParams();
-    queryParams = queryParams.append("movieScreenId", screenId);
+    queryParams = queryParams.append("screenId", screenId);
+    return this.http.get(url, { params: queryParams });
+  }
+
+  pullAllSeatsForScreen(screenId: string): Observable<any> {
+    let url = 'http://localhost:8080/api/seat';
+    let queryParams:HttpParams = new HttpParams();
+    queryParams = queryParams.append("screenId", screenId);
     return this.http.get(url, { params: queryParams });
   }
 }
