@@ -60,7 +60,8 @@ export class SeatAvailablityComponent {
 
   showSeats(){
     this.movieService.pullAllSeatsForScreen(this.selectedShow.selectedTime.screenId,
-      this.selectedShow.selectedTime.showId).subscribe(
+      this.selectedShow.selectedTime.showId,
+      this.selectedShow.theatreName).subscribe(
       (res) => {
         this.theaterSeats = res.rows;
       },
@@ -85,6 +86,7 @@ export class SeatAvailablityComponent {
 
   bookTicket(): void {
       let customerId = "3c69ceed-6a04-415c-8d6b-d1565d9c6d3b";  //TODO: Hardcoded
+      
       let bookingMaster:BookingMaster = {
         customerId: customerId,
         showId: this.selectedShow.selectedTime.showId,
@@ -94,7 +96,7 @@ export class SeatAvailablityComponent {
         amount: 0
       };
       console.log("bookingMaster", bookingMaster);
-      this.movieService.bookTicket(bookingMaster).subscribe(
+      this.movieService.bookTicket(bookingMaster, this.selectedShow.theatreName).subscribe(
         (res) => {
           console.log("Booking Done Successfully")
         },
@@ -105,7 +107,8 @@ export class SeatAvailablityComponent {
   }
 
   pullTicketPrice(): void {
-    this.movieService.pullTicketPrice(this.selectedShow.selectedTime.screenId).subscribe(
+    console.log("this.selectedShow.selectedTime.screenId", this.selectedShow.selectedTime.screenId);
+    this.movieService.pullTicketPrice(this.selectedShow.theatreName, this.selectedShow.selectedTime.screenId).subscribe(
       (res) => {
         this.ticketPrice  = res.price;
       },

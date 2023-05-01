@@ -12,45 +12,49 @@ export class MovieService {
   constructor(private http: HttpClient) { /* TODO document why this constructor is empty */  }
 
   findMoviesByCity( cityId: string): Observable<any> {
-    let url = 'http://localhost:8080/api/movieservice/movies';
+    let url = 'http://localhost:4200/api/movieservice/movies';
     let queryParams:HttpParams = new HttpParams();
     queryParams = queryParams.append("cityId", cityId);
     return this.http.get(url, { params: queryParams });
   }
 
-  findMoviesShows( movieId: string, cityId: string, date: string): Observable<any> {
-    let url = 'http://localhost:8080/api/show';
+  findMoviesShows( movieTitle: string, cityId: string, date: string): Observable<any> {
+    let url = 'http://localhost:4200/api/movieservice/show';
     let queryParams:HttpParams = new HttpParams();
     queryParams = queryParams.append("date", date);
-    queryParams = queryParams.append("movieId", movieId);
-    queryParams = queryParams.append("cityId", cityId);
+    queryParams = queryParams.append("movieTitle", movieTitle);
+    // queryParams = queryParams.append("cityId", cityId);
     return this.http.get(url, { params: queryParams });
   }
 
-  pullTicketPrice(screenId: string): Observable<any> {
-    let url = 'http://localhost:8080/api/ticket-price';
+  pullTicketPrice(clientName: string, screenId: string): Observable<any> {
+    let url = 'http://localhost:4200/api/movieservice/ticket-price';
     let queryParams:HttpParams = new HttpParams();
     queryParams = queryParams.append("screenId", screenId);
+    queryParams = queryParams.append("clientName", clientName);
     return this.http.get(url, { params: queryParams });
   }
 
-  pullAllSeatsForScreen(screenId: string, showId: string): Observable<any> {
-    let url = 'http://localhost:8080/api/seat';
+  pullAllSeatsForScreen(screenId: string, showId: string, clientName: string): Observable<any> {
+    let url = 'http://localhost:4200/api/movieservice/seat';
     let queryParams:HttpParams = new HttpParams();
     queryParams = queryParams.append("screenId", screenId);
+    queryParams = queryParams.append("clientName", clientName);
     queryParams = queryParams.append("showId", showId);
     return this.http.get(url, { params: queryParams });
   }
 
-  bookTicket(bookingMaster: BookingMaster): Observable<any> {
-    let url = 'http://localhost:8080/api/book';
+  bookTicket(bookingMaster: BookingMaster, clientName: string): Observable<any> {
+    let url = 'http://localhost:4200/api/movieservice/book';
     let queryParams:HttpParams = new HttpParams();
-    return this.http.post(url, bookingMaster);
+    queryParams = queryParams.append("clientName", clientName);
+    return this.http.post(url, bookingMaster, { params: queryParams });
   }
 
-  calculatePrice(bookingMaster: BookingMaster): Observable<any> {
-    let url = 'http://localhost:8080/api/price-calculator';
+  calculatePrice(bookingMaster: BookingMaster, clientName: string): Observable<any> {
+    let url = 'http://localhost:4200/api/movieservice/price-calculator';
     let queryParams:HttpParams = new HttpParams();
-    return this.http.post(url, bookingMaster);
+    queryParams = queryParams.append("clientName", clientName);
+    return this.http.post(url, bookingMaster, { params: queryParams });
   }
 }

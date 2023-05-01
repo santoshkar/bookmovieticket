@@ -20,7 +20,7 @@ export class MovieScreeningComponent {
 
   selectedMovie: Movie;
   selectedCity: City;
-  selectedTheatre: Theatre;
+  // selectedTheatre: Theatre;
   movieDate: Date;
   message: string;
   showMessage: boolean = false;;
@@ -42,12 +42,12 @@ export class MovieScreeningComponent {
   initMovieScreeningData(): void {
     this.selectedMovie = this.sharedService.get("selected-movie");
     this.selectedCity = this.sharedService.get("customer-city");
-    this.selectedTheatre = this.sharedService.get("selected-theatre");
+    // this.selectedTheatre = this.sharedService.get("selected-theatre");
   }
 
   showTimes(){
     let m_date: any = this.datePipe.transform(this.movieDate,"dd-MM-yyyy");
-    this.movieService.findMoviesShows(this.selectedMovie.movieId, this.selectedCity.cityId, m_date).subscribe(
+    this.movieService.findMoviesShows(this.selectedMovie.title, this.selectedCity.cityId, m_date).subscribe(
       (res) => {
         this.showDetails = res;
         if(res && res.shows && res.shows.length>0){
