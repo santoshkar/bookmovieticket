@@ -124,5 +124,7 @@
     }
     &.not-available{
         background: lightgray;
+        border: lightgray;
+        border-style: solid;
     }
 }

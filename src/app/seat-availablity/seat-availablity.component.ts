@@ -37,12 +37,11 @@ export class SeatAvailablityComponent {
 
     this.selectedShow = this.sharedService.get("selected-show");
 
-    this.initLabels();
     this.showSeats();
     this.pullTicketPrice();
   }
 
-  updatePrice(ticketType: string){
+  updatePrice(val: any){
 
     // this.ticketPrice = this.ticketPriceObject.price;
     // switch(ticketType){
@@ -58,13 +57,6 @@ export class SeatAvailablityComponent {
     // }
   }
 
-  initLabels(){
-    this.labelMap.set(0, 'A');
-    this.labelMap.set(1, 'B');
-    this.labelMap.set(2, 'C');
-    this.labelMap.set(3, 'D');
-    this.labelMap.set(4, 'E');
-  }
 
   showSeats(){
     this.movieService.pullAllSeatsForScreen(this.selectedShow.selectedTime.screenId,
@@ -88,6 +80,7 @@ export class SeatAvailablityComponent {
     } else {
       this.selectedSeatIdsForBooking.delete(column.seatId);
     }
+    this.updatePrice(this.selectedSeatIdsForBooking);
   }
 
   bookTicket(): void {

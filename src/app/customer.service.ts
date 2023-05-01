@@ -10,10 +10,8 @@ export class CustomerService {
   constructor(private http: HttpClient) { /* TODO document why this constructor is empty */  }
 
   findAllCities(): Observable<any> {
-    let queryParams:HttpParams = new HttpParams();
-    // queryParams = queryParams.append("projectId", projectId);
-    // return this.http.get(url, { params: queryParams });
-    let url = 'http://localhost:8080/api/city';
+    let url = 'http://localhost:8080/api/userservice/cities';
+    // let url = 'http://localhost:3000/cities';
     return this.http.get(url);
     
   }
